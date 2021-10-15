@@ -2,6 +2,8 @@ defmodule Poetic.Documents.Upload do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Poetic.Documents
+
   schema "uploads" do
     field :content_type, :string
     field :filename, :string

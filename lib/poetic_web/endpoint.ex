@@ -43,7 +43,7 @@ defmodule PoeticWeb.Endpoint do
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
 
   plug Plug.Parsers,
-    parsers: [:urlencoded, :multipart, :json],
+    parsers: [:urlencoded, {:multipart, length: 500_000_000 }, :json],
     pass: ["*/*"],
     json_decoder: Phoenix.json_library()
 
