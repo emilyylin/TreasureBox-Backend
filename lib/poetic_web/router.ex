@@ -1,5 +1,6 @@
 defmodule PoeticWeb.Router do
   use PoeticWeb, :router
+  alias PoeticWeb
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -21,8 +22,20 @@ defmodule PoeticWeb.Router do
 
   scope "/", PoeticWeb do
     pipe_through :browser
+    #pipe_through [:browser, :auth]
 
     resources "/uploads", UploadController, only: [:index, :new, :create, :show]
+  end
+
+  scope "/api", PoeticWeb do
+    pipe_through :api
+
+    post "/users/signup", UserController, :create
+    post "/users/signin", UserController, :signin
+  end
+
+  pipeline :auth do
+    plug PoeticWeb.Auth.Pipeline
   end
 
   # Other scopes may use custom stacks.

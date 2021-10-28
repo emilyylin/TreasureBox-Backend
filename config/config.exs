@@ -33,3 +33,7 @@ import_config "#{Mix.env()}.exs"
 #this is only if we want to use the system in production
 config :poetic,
   uploads_directory: System.get_env("POETIC_UPLOADS_DIRECTORY") || "/uploads"
+
+config :poetic, PoeticWeb.Auth.Guardian,
+  issuer: "poetic",
+  secret_key: "0T5Oj5E5/rrrl3d6vv0kcAmfU5TaCKlTRvuZuCE4Gxbbv2ykEAeOHuinL12o6eJO"
