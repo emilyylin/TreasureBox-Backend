@@ -31,8 +31,8 @@ config :phoenix, :json_library, Jason
 import_config "#{Mix.env()}.exs"
 
 #this is only if we want to use the system in production
-config :poetic,
-  uploads_directory: System.get_env("POETIC_UPLOADS_DIRECTORY") || "/uploads"
+# config :poetic,
+#   uploads_directory: System.get_env("POETIC_UPLOADS_DIRECTORY") || "/uploads"
 
 config :poetic, PoeticWeb.Auth.Guardian,
   issuer: "poetic",

@@ -76,4 +76,4 @@ config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
 
 config :poetic,
-  uploads_directory: "/Users/emilylin/emily/elixir-practice/uploads_dev"
+  uploads_directory: "/Users/emilylin/emily/elixir-practice/poetic/uploads_dev"

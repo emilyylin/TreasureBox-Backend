@@ -14,6 +14,11 @@ defmodule PoeticWeb.UploadController do
     render(conn, "index.html", uploads: uploads)
   end
 
+  def listUploads(conn, _params) do
+    uploads = Documents.list_uploads()
+    render(conn, "uploads.json", uploads: uploads)
+  end
+
   def show(conn, %{"id" => id}) do
     upload = Documents.get_upload!(id)
     local_path = Poetic.Documents.Upload.local_path(upload.id, upload.filename)

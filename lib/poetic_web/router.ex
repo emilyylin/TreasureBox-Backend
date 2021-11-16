@@ -32,6 +32,7 @@ defmodule PoeticWeb.Router do
 
     post "/users/signup", UserController, :create
     post "/users/signin", UserController, :signin
+    get "/uploads/listUploads", UploadController, :listUploads
   end
 
   pipeline :auth do
