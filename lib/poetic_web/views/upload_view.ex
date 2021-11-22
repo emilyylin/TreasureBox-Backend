@@ -19,7 +19,7 @@ defmodule PoeticWeb.UploadView do
       content_type: upload.upload.content_type,
       inserted_at: upload.upload.inserted_at,
       date: Timex.format!(d, "{Mshort} {D}, {YYYY}"),
-      time: Timex.format!(d, "%I:%M%P", :strftime),
+      time: Timex.format!(d, "{h12}:{m} {AM}"),
       size: upload.upload.size
     }
   end
