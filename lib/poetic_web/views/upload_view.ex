@@ -20,6 +20,9 @@ defmodule PoeticWeb.UploadView do
       inserted_at: upload.upload.inserted_at,
       date: Timex.format!(d, "{Mshort} {D}, {YYYY}"),
       time: Timex.format!(d, "{h12}:{m} {AM}"),
+      is_starred: upload.upload.is_starred,
+      is_deleted: upload.upload.is_deleted,
+      recent_access_time: upload.upload.recent_access_time,
       size: upload.upload.size
     }
   end
