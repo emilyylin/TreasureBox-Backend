@@ -28,7 +28,7 @@ defmodule Poetic.Documents do
         {:ok, upload} <- 
             %Upload{} |> Poetic.Documents.Upload.changeset(%{
             filename: filename, content_type: content_type,
-            hash: hash, size: size }) 
+            hash: hash, size: size, is_starred: false, is_deleted: false, recent_access_time: DateTime.utc_now() }) 
             |> Repo.insert(),
                         
         :ok <- File.cp(

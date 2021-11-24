@@ -9,6 +9,9 @@ defmodule Poetic.Documents.Upload do
     field :filename, :string
     field :hash, :string
     field :size, :integer
+    field :is_starred, :boolean
+    field :is_deleted, :boolean
+    field :recent_access_time, :utc_datetime
 
     timestamps()
   end
@@ -16,8 +19,8 @@ defmodule Poetic.Documents.Upload do
   @doc false
   def changeset(upload, attrs) do
     upload
-    |> cast(attrs, [:filename, :size, :content_type, :hash])
-    |> validate_required([:filename, :size, :content_type, :hash])
+    |> cast(attrs, [:filename, :size, :content_type, :hash, :is_starred, :is_deleted, :recent_access_time ])
+    |> validate_required([:filename, :size, :content_type, :hash, :is_starred, :is_deleted, :recent_access_time])
     # added validations
     |> validate_number(:size, greater_than: 0) #doesn't allow empty files
     |> validate_length(:hash, is: 64)
