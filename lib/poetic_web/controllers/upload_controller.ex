@@ -25,6 +25,10 @@ defmodule PoeticWeb.UploadController do
     send_download conn, {:file, local_path}, filename: upload.filename
   end
 
+  def update() do
+    
+  end
+
   def create(conn, %{"upload" => %Plug.Upload{}=upload}) do
     # IO.inspect(upload, label: "UPLOAD")
     # text conn, "ok"

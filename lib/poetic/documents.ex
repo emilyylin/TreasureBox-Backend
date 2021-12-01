@@ -14,6 +14,20 @@ defmodule Poetic.Documents do
     |> Repo.get!(id)
   end
 
+  @doc """
+  Updates a user.
+  ## Examples
+      iex> update_user(user, %{field: new_value})
+      {:ok, %User{}}
+      iex> update_user(user, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+  """
+  def update_upload(%Upload{} = upload, attrs) do
+    upload
+    |> Upload.changeset(attrs)
+    |> Repo.update()
+  end
+
   def create_upload_from_plug_upload(%Plug.Upload{
     filename: filename,
     path: tmp_path,
