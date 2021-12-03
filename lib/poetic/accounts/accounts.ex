@@ -37,10 +37,25 @@ defmodule Poetic.Accounts do
       iex> create_user(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
   """
+  # def create_user(attrs \\ %{}) do
+  #   %User{}
+  #   |> User.changeset(attrs)
+  #   |> Repo.insert()
+  # end
+
   def create_user(attrs \\ %{}) do
-    %User{}
-    |> User.changeset(attrs)
-    |> Repo.insert()
+    case matching_passwords(attrs["password"], attrs["password2"]) do 
+      true ->
+        %User{}
+        |> User.changeset(attrs)
+        |> Repo.insert()
+      false ->
+        {:error, :unauthorized}
+    end
+  end
+
+  defp matching_passwords(p1, p2) do 
+    p1===p2
   end
 
   @doc """
