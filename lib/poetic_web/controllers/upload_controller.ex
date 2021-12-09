@@ -25,8 +25,10 @@ defmodule PoeticWeb.UploadController do
     send_download conn, {:file, local_path}, filename: upload.filename
   end
 
-  def update() do
-    
+  def update(conn, %{"id" => id, "field" => field, "new_value" => new_value}) do
+    upload=Documents.get_upload!(id)
+    uploads=Documents.update_upload(upload, %{field: new_value})
+    render(conn, "upload.json", upload: upload)
   end
 
   def create(conn, %{"upload" => %Plug.Upload{}=upload}) do
