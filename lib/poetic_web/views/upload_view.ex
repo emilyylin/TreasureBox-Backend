@@ -24,6 +24,8 @@ defmodule PoeticWeb.UploadView do
       is_deleted: upload.upload.is_deleted,
       recent_access_time: upload.upload.recent_access_time,
       size: upload.upload.size
+      # email_body: upload.upload.email_body,
+      # email_sender: upload.upload.email_sender
     }
   end
 

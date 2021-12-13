@@ -2,6 +2,7 @@
 
 defmodule PoeticWeb.UploadController do
   use PoeticWeb, :controller
+  require Logger
 
   alias Poetic.Documents
 
@@ -25,10 +26,25 @@ defmodule PoeticWeb.UploadController do
     send_download conn, {:file, local_path}, filename: upload.filename
   end
 
-  def update(conn, %{"id" => id, "field" => field, "new_value" => new_value}) do
+  def star(conn, %{"id" => id, "new_value" => new_value}) do
+    # Logger.info("#{inspect(id)}")
     upload=Documents.get_upload!(id)
-    uploads=Documents.update_upload(upload, %{field: new_value})
+    uploads=Documents.update_upload(upload, %{is_starred: new_value})
+    uploads = Documents.list_uploads()
+    render(conn, "uploads.json", uploads: uploads)
+  end
+
+  def getUpload(conn, %{"id" => id}) do 
+    upload=Documents.get_upload!(id)
     render(conn, "upload.json", upload: upload)
+  end
+
+  def delete(conn, %{"id" => id, "new_value" => new_value}) do
+    # Logger.info("#{inspect(id)}")
+    upload=Documents.get_upload!(id)
+    uploads=Documents.update_upload(upload, %{"is_deleted": new_value})
+    uploads = Documents.list_uploads()
+    render(conn, "uploads.json", uploads: uploads)
   end
 
   def create(conn, %{"upload" => %Plug.Upload{}=upload}) do

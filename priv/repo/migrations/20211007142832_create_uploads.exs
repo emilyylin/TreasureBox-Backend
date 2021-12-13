@@ -10,6 +10,8 @@ defmodule Poetic.Repo.Migrations.CreateUploads do
       add :is_starred, :boolean
       add :is_deleted, :boolean
       add :recent_access_time, :timestamp
+      # add :email_body, :string
+      # add :email_sender, :string
 
       timestamps()
     end
